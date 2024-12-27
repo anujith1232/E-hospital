@@ -1,0 +1,25 @@
+{% extends 'admin/index.html' %}
+{% load static %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1>Doctor</h1>
+    <div><a href="/doct" class="btn btn-primary btn-lg">Doctor Field</a></div>
+    <h1>Patient</h1>
+    <div><a href="{% url 'adminapp:alldetails' %}" value='Patient Field' class="btn btn-success btn-lg">Patient Field</a></div>
+    <div>
+   <a href="{% url 'adminapp:insert' %}" class="btn btn-primary btn-lg" style="margin-top: 10px;">Insurance</a>
+
+</div>
+</div>
+
+
+</body>
+</html>
+{% endblock %}

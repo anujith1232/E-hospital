@@ -1,0 +1,17 @@
+{% extends 'doctor/index.html' %}
+{% load static %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>done</title>
+</head>
+<body>
+<h1>OKAY DONE !!</h1>
+{{ doctor.schedule }}
+<a href="/doct" class="btn btn-primary">Back</a>
+
+</body>
+</html>
+{% endblock %}

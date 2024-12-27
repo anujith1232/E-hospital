@@ -1,0 +1,22 @@
+{% extends 'doctor/index.html' %}
+{% load static %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Treatment</title>
+</head>
+<body>
+    <h1>Treatment for {{ patient.name }}</h1>
+    <p>Age: {{ patient.age }}</p>
+    <p>Gender: {{ patient.sex }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</body>
+</html>
+{% endblock %}

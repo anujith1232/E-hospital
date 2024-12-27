@@ -1,0 +1,104 @@
+{% extends 'user/index.html' %}
+{% load static %}
+
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Bill</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Header Section with Logo -->
+        <div class="text-center mb-4">
+            <img src="{% static 'assets/img/gallery/ii.png' %}" alt="Hospital Logo" style="max-width: 150px; height: auto;" />
+            <h1> Eyeris Eye Hospital</h1>
+            <p>Address: Chennai, Erode | Phone: +123456789</p>
+        </div>
+
+        <!-- Start looping over bills -->
+        {% for bill in user_bills %}
+            <!-- Patient and Bill Details -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <p><strong>Patient Name:</strong> {{ bill.patient_name }}</p>
+                    <p><strong>Age:</strong> {{ patient.age }}</p>
+                    <p><strong>Issued Date:</strong> {{ bill.issue_date }}</p>
+                </div>
+                <div class="col-md-6 text-right">
+                    {% if doctor_patients %}
+                        <p><strong>Doctor:</strong> Dr. {{ doctor_patients.first.doctor.doctor_name }}</p>
+                    {% else %}
+                        <p><strong>Doctor:</strong> N/A</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Itemized Charges -->
+            <h3 class="mb-3">Itemized Charges</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="bg-primary text-white">
+                        <th>Item</th>
+                        <th>Amount ($)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Injection Amount</td>
+                        <td>{{ bill.injection_amount }}</td>
+                    </tr>
+                    <tr>
+                        <td>Scanning Amount</td>
+                        <td>{{ bill.scanning_amount }}</td>
+                    </tr>
+                    <tr>
+                        <td>Drugs Amount</td>
+                        <td>{{ bill.drugs_amount }}</td>
+                    </tr>
+                    <tr>
+                        <td>Surgery Amount</td>
+                        <td>{{ bill.surgery_amount }}</td>
+                    </tr>
+                    <tr>
+                        <td>Ward Procedures</td>
+                        <td>{{ bill.ward_procedures }}</td>
+                    </tr>
+                    <tr>
+                        <td>Doctor Fee</td>
+                        <td>{{ bill.doctor_fee }}</td>
+                    </tr>
+                    <tr class="font-weight-bold">
+                        <td>Total</td>
+                        <td>
+                           {{ bill.total_amount }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Payment Section -->
+            <div class="text-center mt-4">
+                <form action="{% url 'userapp:create_checkout_session' bill.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success btn-lg">Pay Now</button>
+                </form>
+            </div>
+
+            <hr>
+        {% endfor %}
+
+        <!-- Footer Section -->
+        <div class="text-center mt-4">
+            <p>Thank you for choosing Vision Eye Hospital!</p>
+            <p>For queries, contact us at +123456789</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointments</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        .navbar-custom {
+            background-color: #4CAF50;
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link,
+        .navbar-custom .btn {
+            color: white;
+        }
+        .navbar-custom .btn:hover {
+            background-color: #45a049;
+            color: white;
+        }
+        .small-card {
+            width: 100%;
+            max-width: 300px;
+            margin: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+        }
+        .small-card img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 15px auto;
+            display: block;
+            border: 2px solid #ccc;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        body {
+            background-image: url("{% static 'assets/img/gallery/sp.png' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100vh;
+            width: 100vw;
+            background-attachment: fixed;
+            color: white;
+        }
+        h2 {
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <a class="navbar-brand" href="#">Appointments</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/control">Back</a></li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" method="GET" action="/search/">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search by Name" aria-label="Search" name="q">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <ul class="navbar-nav ml-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="display: flex; align-items: center; margin-left: 20px;">
+                        <i class="fas fa-user-circle" style="font-size: 2em; margin-right: 8px;"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h2>Insurance Report</h2>
+    <div class="container">
+        <div class="row">
+            {% if patients %}
+                {% for patient in patients %}
+                    {% for insurance in insurances %}
+                        <div class="col-md-4">
+                            <div class="card small-card">
+                                <img src="{{ insurance.logo.url }}" alt="{{ patient.name }}">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color:Blue;">{{ patient.name }}</h5>
+                                    <p style="color:black;"><b>Provider:</b> {{ insurance.provider_name }}</p>
+                                    <p style="color:black;"><b>Coverage:</b> {{ insurance.coverage_percentage }}%</p>
+                                    <p style="color:black;"><b>Policy Number:</b> {{ insurance.policy_number }}</p>
+                                    <p style="color:black;"><b>Max Coverage:</b> {{ insurance.maximum_coverage }}</p>
+                                    <a href="{% url 'adminapp:insurance_v' patient.id %}" class="btn btn-primary btn-lg" style="margin-top: 10px;">view</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% else %}
+                <p>No insurance.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

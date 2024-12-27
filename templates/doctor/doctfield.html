@@ -1,0 +1,21 @@
+{% extends 'doctor/index.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+<form method="post" action="" enctype="multipart/form-data">
+ <a href="{% url 'doctorapp:doct' %}" class="btn btn-sm btn-primary">Add Doctors</a>
+
+  {% csrf_token %}
+
+  {{ form.as_p }}
+
+  <input type="submit" value="save" class="btn btn-primary">
+   <a href="{% url 'doctorapp:viewall' %}" class="btn btn-success">Patients Field</a>
+
+
+
+</form>
+
+</body>
+{% endblock %}

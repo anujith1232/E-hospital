@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointments</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        /* Navbar styling */
+        .navbar-custom {
+            background-color: #4CAF50; /* Light green color */
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link,
+        .navbar-custom .btn {
+            color: white;
+        }
+        .navbar-custom .btn:hover {
+            background-color: #45a049;
+            color: white;
+        }
+
+        /* Card styling */
+        .small-card {
+            width: 100%;
+            max-width: 300px;
+            padding: 15px;
+            margin: 15px;
+            border: 1px solid #ddd;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .small-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+        .card-body, .list-group-item {
+            padding: 4px;
+            color: black;
+        }
+
+        /* Background styling */
+        body {
+            background-image: url("{% static 'assets/img/gallery/sp.png' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100vh;
+            width: 100vw;
+            background-attachment: fixed;
+            color: white;
+        }
+        h2 {
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+        }
+        .list-group-item {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .rounded-image {
+            width: 150px; /* Set the width of the image */
+            height: 150px; /* Set the height of the image */
+            object-fit: cover; /* Ensures the image fits perfectly inside the container */
+            border-radius: 50%; /* Makes the image circular */
+            border: 2px solid #ccc; /* Optional: Adds a border around the image */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a slight shadow for better visuals */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <a class="navbar-brand" href="#">Appointments</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/book">Back</a>
+                </li>
+            </ul>
+
+            <!-- Search field and Profile icon with name -->
+            <form class="form-inline my-2 my-lg-0" method="GET" action="/search/">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search by Name" aria-label="Search" name="q">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+            <ul class="navbar-nav ml-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="display: flex; align-items: center; margin-left:20px;">
+                        <i class="fas fa-user-circle" style="font-size: 2em; margin-right: 8px;"></i>
+                        {{ user.first_name }} {{ user.last_name }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <h2>Appointments</h2>
+    <div class="container">
+        <div class="row">
+            {% if patients %}
+                {% for patient in patients %}
+                    {% if not patient.is_deleted %}
+                        <div class="col-md-4">
+                            <div class="card small-card">
+                                <h5 style="color:blue; text-align:center;">Token {{ patient.token_number }}</h5>
+
+                                <img src="{{ patient.Image.url}}" alt="{{ patient.name }}"
+                                     class="rounded-image mx-auto d-block">
+
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-weight: 400;">{{ patient.name }}</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text"><b style='font-weight:500;'>Age:</b> {{ patient.age }}</p>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text"><b style='font-weight:500;'>Phone number:</b> {{ patient.phone_number }}</p>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text"><b style='font-weight:600;'>Gender:</b> {{ patient.sex }}</p>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text"><b style='font-weight:600;'>Scheduled Date & Time:</b> {{ patient.scheduled_time }}</p>
+                                </div>
+                                <div class="card-body">
+                                    <a href="/patient-details/{{ patient.id }}/" class="btn btn-primary btn-sm">Details ></a>
+                                    <a href="/patient-update/{{ patient.id }}/" class="btn btn-success btn-sm">Reschedule</a>
+                                    <a href="/patient-delete/{{ patient.id }}/" class="btn btn-danger btn-sm">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <p>No Patients.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

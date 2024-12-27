@@ -1,0 +1,20 @@
+{% extends 'admin/index.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+  <h1>Medical Report Entry</h1>
+  <div style="display: flex; align-items: center;">
+    <!-- Image Section -->
+    <img src="{{ patient.Image.url }}" alt="{{ patients.name }}"
+         style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 2px solid #ccc; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-right: 20px;">
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save" class="btn btn-primary">
+</form>
+
+  </div>
+</body>
+{% endblock %}

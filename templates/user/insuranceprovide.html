@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        main {
+            padding: 2rem;
+        }
+        .insurance-card {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .insurance-card img {
+            max-width: 100px;
+            display: block;
+            margin: 1rem auto;
+        }
+        .no-insurance {
+            text-align: center;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem 0;
+            background-color: #f1f1f1;
+        }
+        nav {
+            text-align: center;
+            margin: 1rem 0;
+        }
+        nav a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Insurance Details</h1>
+    </header>
+
+    <main>
+        {% if user_insurances %}
+            {% for insurance in user_insurances %}
+                <div class="insurance-card">
+                    <h2>Policy Details</h2>
+                    <p><strong>Policy Number:</strong> {{ insurance.policy_number }}</p>
+                    <p><strong>Insurance Name:</strong> {{ insurance.insurance_name }}</p>
+                    <p><strong>Maximum Coverage:</strong> {{ insurance.maximum_coverage }}</p>
+                    <p><strong>Validity:</strong> {{ insurance.validity_date }}</p>
+                    {% if insurance.logo %}
+                        <img src="{{ insurance.logo.url }}" alt="Insurance Logo" class="img-fluid">
+                    {% else %}
+                        <p>No logo available</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="no-insurance">
+                <h2>No Insurance Details Available</h2>
+                <p>It seems like we do not have any insurance information associated with your account.</p>
+                <p>Please contact your provider or update your profile to add insurance details.</p>
+            </div>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>&copy; {% now "Y" %} Insurance Portal</p>
+    </footer>
+</body>
+</html>

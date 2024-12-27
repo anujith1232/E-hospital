@@ -1,0 +1,62 @@
+{% extends 'user/index.html' %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Registration Form -->
+    <h2 class="text-center mt-4">Registration</h2>
+    <form action="{% url 'userapp:book' %}" method="post" enctype="multipart/form-data" class="mx-auto" style="max-width: 400px;">
+        {% csrf_token %}
+        <div class="card shadow p-4">
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary btn-block w-100 mt-3">Submit</button>
+        </div>
+    </form>
+
+    <!-- Login Link -->
+    <div class="mt-3 text-center">
+        <p style="color:Blue;">Already have an account? <a href="{% url 'userapp:login' %}" style="color:blue;">Login here</a></p>
+    </div>
+</div>
+   <div class="col-md-4" style="padding-right: 30px;">
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="width: auto;">
+                    Notification (Availability of Doctors)
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="border: 1px solid #007bff; padding: 5px; width: 353px; max-height: 400px; overflow-y: auto;">
+                    {% for doctor in doctors %}
+                   <li>
+    <p class="dropdown-item" style="border: 1px solid #ddd; padding: 5px; margin-bottom: 2px; border-radius: 8px; background-color: #f8f9fa; width: 100%; height: 140px;">
+    <img src="{{ doctor.Image.url }}"  style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;" />
+
+    <strong>Dr. {{ doctor.doctor_name }}</strong>
+
+
+    <span style="font-size: 14px; color: blue; display: block; font-weight:bold; "><i>{{ doctor.specialization }}</i></span><br>
+
+ <span>{{ doctor.schedule }}</span><br>
+
+<span style="font-size: 12px; color: rgba(0, 0, 0, 0.6); text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); display: block; font-weight: normal; margin-top: 10px;">
+    {{ current_time }}
+</span>
+
+
+
+</p>
+
+
+</li>
+
+                    {% empty %}
+                    <li>
+                        <p class="dropdown-item" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 8px; background-color: #f8f9fa;">
+                            No doctors available.
+                        </p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

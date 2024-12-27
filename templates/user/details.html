@@ -1,0 +1,33 @@
+{% extends 'user/index.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Patient Details</h2>
+
+{% if patients %}
+<div class="card large-card">
+    <!-- Patient Image -->
+    <img src="{{ patients.Image.url }}" alt="{{ patients.name }}" style="width: 350px; height: 350px; border-radius: 50%; object-fit: cover; margin-left:70px; margin-top:20px;">
+    <div class="card-body">
+        <h5 class="card-title" style="font-weight: bold;">{{ patients.name }}</h5>
+    </div>
+    <!-- Patient Details -->
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><b>Uername:</b> {{ patients.username }}</li>
+        <li class="list-group-item"><b>Age:</b> {{ patients.age }}</li>
+        <li class="list-group-item"><b>Date of Birth:</b> {{ patients.dateofbirth }}</li>
+        <li class="list-group-item"><b>Gender:</b> {{ patients.sex }}</li>
+        <li class="list-group-item"><b>Scheduled Time:</b> {{ patients.scheduled_time }}</li>
+        <li class="list-group-item"><b>Address:</b> {{ patients.address }}</li>
+        <li class="list-group-item"><b>Reason:</b> {{ patients.Reason }}</li>
+        <li class="list-group-item"><b>Email:</b> {{ patients.email }}</li>
+    </ul>
+    <!-- Back Button -->
+    <div class="card-body">
+        <a href="/det" class="btn btn-success">Back to Home</a>
+    </div>
+</div>
+{% else %}
+<p>No details available.</p>
+{% endif %}
+{% endblock %}

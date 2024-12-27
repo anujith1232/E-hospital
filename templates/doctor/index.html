@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en-US" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>Livedoc | Landing, Responsive &amp; Business Templatee</title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicons/favicon-16x16.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicons/favicon.ico' %}">
+    <link rel="manifest" href="{% static 'assets/img/favicons/manifest.json' %}">
+    <meta name="msapplication-TileImage" content="{% static 'assets/img/favicons/mstile-150x150.png' %}">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="{% static 'assets/css/theme.css' %}" rel="stylesheet" />
+
+  </head>
+
+
+  <body>
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block" data-navbar-on-scroll="data-navbar-on-scroll">
+        <div class="container"><a class="navbar-brand" href="index.html"><img src="{% static 'assets/img/gallery/ii.png' %}" width="118" alt="logo" /></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
+          <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
+              <li class="nav-item px-2"><a class="nav-link" href="#departments">Departments</a></li>
+              <li class="nav-item px-2"><a class="nav-link" href="{% url 'doctorapp:viewall' %}">Appointment history</a></li>
+              <li class="nav-item px-2"><a class="nav-link" href="/all">Patients</a></li>
+              <li class="nav-item px-2"><a class="nav-link" href="#findUs">Medical History</a></li>
+            </ul><a class="btn btn-sm btn-outline-primary rounded-pill order-1 order-lg-0 ms-lg-4" href='/login'>Sign In</a>
+            <div class="nav-item px-2 "><i class="fas fa-user-circle" style="font-size: 2em; margin-right: 10px;"></i>
+
+          </div>
+        </div>
+          </div>
+      </nav>
+      <section class="py-xxl-10 pb-0" id="home">
+
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+          <div class="row min-vh-xl-100 min-vh-xxl-25">
+
+            <div class="col-md-75 col-xl-6 col-xxl-5  py-6">
+              {% block content %}
+              {% endblock %}
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-5">
+        <div class="bg-holder bg-size" style="background-image:url({% static 'assets/img/gallery/doctors-bg.png' %});background-position:top center;background-size:contain;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+          <h1 class="text-center">OUR DOCTORS</h1>
+          <div class="row flex-center">
+            <div class="col-xl-10 px-0">
+              <div class="carousel slide" id="carouselExampleDark" data-bs-ride="carousel"><a class="carousel-control-prev carousel-icon z-index-2" href="#carouselExampleDark" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next carousel-icon z-index-2" href="#carouselExampleDark" role="button" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></a>
+                <div class="carousel-inner">
+                  <div class="carousel-item active" data-bs-interval="10000">
+                    <div class="row h-100 m-lg-7 mx-3 mt-6 mx-md-4 my-md-7">
+                      <div class="col-md-4 mb-8 mb-md-0">
+                        <div class="card card-span h-100 shadow">
+                          <div class="card-body d-flex flex-column flex-center py-5"><img src="{% static 'assets/img/gallery/xiu.webp' %}" width="128" alt="..." />
+                            <h5 class="mt-3">Dr.Xiu sen</h5>
+                            <p class="mb-0 fs-xxl-1">ophthalmologist</p>
+                            <p class="text-600 mb-0">Florida, United States</p>
+                            <p class="text-600 mb-4">10 years experience</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-8 mb-md-0">
+                        <div class="card card-span h-100 shadow">
+                          <div class="card-body d-flex flex-column flex-center py-5"><img src="{% static 'assets/img/gallery/watson.png' %}" class='img-rounded' width="128" alt="..." />
+                            <h5 class="mt-3">Dr.Jakes watson</h5>
+                            <p class="mb-0 fs-xxl-1">ophthalmologist</p>
+                            <p class="text-600 mb-0">Melbourne, Australia</p>
+                            <p class="text-600 mb-4">12 years experience</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-8 mb-md-0">
+                        <div class="card card-span h-100 shadow">
+                          <div class="card-body d-flex flex-column flex-center py-5"><img src="{% static 'assets/img/gallery/af.png' %}" width="128" class='img-rounded' alt="..." />
+                            <h5 class="mt-3">Dr.Nacimento</h5>
+                            <p class="mb-0 fs-xxl-1">ophthalmologist</p>
+                            <p class="text-600 mb-0">Santos,Brazil</p>
+                            <p class="text-600 mb-4">25 years experience</p>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item" data-bs-interval="2000">
+                    <div class="row h-100 m-lg-7 mx-3 mt-6 mx-md-4 my-md-7">
+                      <div class="col-md-4 mb-8 mb-md-0">
+                        <div class="card card-span h-100 shadow">
+                          <div class="card-body d-flex flex-column flex-center py-5"><img src="{% static 'assets/img/gallery/af.png' %}" width="128" class='img-rounded' alt="..." />
+                            <h5 class="mt-3">Dr.Nacimento</h5>
+                            <p class="mb-0 fs-xxl-1">ophthalmologist</p>
+                            <p class="text-600 mb-0">Santos,Brazil</p>
+                            <p class="text-600 mb-4">25 years experience</p>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-8 mb-md-0">
+                        <div class="card card-span h-100 shadow">
+                          <div class="card-body d-flex flex-column flex-center py-5"><img src="{% static 'assets/img/gallery/watson.png' %}" class='img-rounded' width="128" alt="..." />
+                            <h5 class="mt-3">Dr.Jakes watson</h5>
+                            <p class="mb-0 fs-xxl-1">ophthalmologist</p>
+                            <p class="text-600 mb-0">Melbourne, Australia</p>
+                            <p class="text-600 mb-4">12 years experience</p>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="row h-100 m-lg-7 mx-3 mt-6 mx-md-4 my-md-7">
+                      <div class="col-md-4 mb-8 mb-md-0">
+                        <div class="card card-span h-100 shadow">
+                          <div class="card-body d-flex flex-column flex-center py-5"><img src="{% static 'assets/img/gallery/anita.png' %}" width="128" alt="..." />
+                            <h5 class="mt-3">Anita Deshai</h5>
+                            <p class="mb-0 fs-xxl-1">Pediatrics, Gochi Medicine</p>
+                            <p class="text-600 mb-0">Florida, United States</p>
+                            <p class="text-600 mb-4">10 years experience</p>
+                            <div class="text-center">
+                              <button class="btn btn-outline-secondary rounded-pill" type="submit">View Profile</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-8 mb-md-0">
+                        <div class="card card-span h-100 shadow">
+                          <div class="card-body d-flex flex-column flex-center py-5"><img src="{% static 'assets/img/gallery/jane.png' %}" width="128" alt="..." />
+                            <h5 class="mt-3">Jane Flakis</h5>
+                            <p class="mb-0 fs-xxl-1">Gynaecology, Abenka Care</p>
+                            <p class="text-600 mb-0">Melbourne, Australia</p>
+                            <p class="text-600 mb-4">12 years experience</p>
+                            <div class="text-center">
+                              <button class="btn btn-outline-secondary rounded-pill" type="submit">View Profile</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-8 mb-md-0">
+                        <div class="card card-span h-100 shadow">
+                          <div class="card-body d-flex flex-column flex-center py-5"><img src="{% static 'assets/img/gallery/leo-mario.png' %}" width="128" alt="..." />
+                            <h5 class="mt-3">Leo Mario</h5>
+                            <p class="mb-0 fs-xxl-1">Physiotherapy, FitCare</p>
+                            <p class="text-600 mb-0">London, England</p>
+                            <p class="text-600 mb-4">25 years experience</p>
+                            <div class="text-center">
+                              <button class="btn btn-secondary hover-top rounded-pill border-0" type="submit">View Profile</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="{% static 'vendors/@popperjs/popper.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/is/is.min.js' %}"></script>
+    <script src="https://scripts.sirv.com/sirvjs/v3/sirv.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="{% static 'vendors/fontawesome/all.min.js' %}"></script>
+    <script src="{% static 'assets/js/theme.js' %}"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&amp;family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&amp;display=swap" rel="stylesheet">
+  </body>
+
+</html>

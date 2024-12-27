@@ -1,0 +1,33 @@
+{% extends 'admin/index.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+    <h1>Bill Request</h1>
+    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+        <!-- Image Section -->
+        {% if patient %}
+        <img src="{{ patient.Image.url }}" alt="{{ patient.name }}"
+            style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 2px solid #ccc; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-right: 20px;">
+        {% else %}
+        <p>No image available for the patient.</p>
+        {% endif %}
+
+        <!-- Patient Information -->
+        <div>
+            <h3>{{ patient.name }}</h3>
+            <p><strong>Age:</strong> {{ patient.age }}</p>
+        </div>
+    </div>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Send" class="btn btn-primary">
+        </div>
+    </form>
+</body>
+{% endblock %}

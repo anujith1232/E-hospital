@@ -1,0 +1,26 @@
+{% extends 'user/index.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 20px;
+        }
+        h1 {
+            color: #d9534f;
+        }
+    </style>
+<body>
+    <div class="container">
+        <h1 class="text-danger">Are you sure you want to cancel this schedule" ?</h1>
+        <p><strong>Scheduled time & Date:</strong> {{ patients.scheduled_time }}</p>
+
+    <form action="{% url 'userapp:delete' patients.id %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirm Delete</button>
+    <a href="{% url 'userapp:all' %}" class="btn btn-secondary">Cancel</a>
+</form>
+
+    </div>
+{% endblock %}

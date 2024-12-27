@@ -1,0 +1,15 @@
+{% extends 'user/index.html' %}
+{% load static %}
+
+{% block content %}
+<html>
+<head>
+    <title>Payment Successful</title>
+</head>
+<body>
+    <h1>Thank you for your payment!</h1>
+    <p>Your transaction was successful.</p>
+<a href="/patient-bills" class="btn btn-success">Back to Home</a>
+</body>
+</html>
+{% endblock %}
